@@ -1,0 +1,203 @@
+<form [formGroup]="form" class="box" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <div class="task_modal">
+    <div class="header_cont" cdkDragHandle>
+      <mat-icon class="close" (click)="onNoClick()">close</mat-icon>
+    </div>
+    <div class="title_cont">
+      <mat-form-field class="title_form_field">
+        <input matInput placeholder="Add title" id="taskTitle" formControlName="taskTitle" [(ngModel)]=title>
+      </mat-form-field>
+      <div class="error-message">
+        <div *ngIf="taskTitle.touched && taskTitle.invalid" class="title_validation_message">
+          <div *ngIf="taskTitle.errors?.required">Title Required</div>
+          <div *ngIf="taskTitle.errors?.maxlength">Max Characters Allowed(50)</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="nav_cont">
+      <nav>
+        <button [ngClass]="[event_btn_style]" (click)="eventClick()" *ngIf="!isEditPopUp || eventComp">Event</button>
+        <button [ngClass]="[task_btn_style]" (click)="taskClick()" *ngIf="!isEditPopUp || !eventComp">Task</button>
+      </nav>
+      <!-- <app-event [isEvent]="eventComp" [title]=title [taskDetails]=taskDetails [taskId]=taskId></app-event> -->
+      <!-- <form [formGroup]="form"> -->
+      <div class="event_cont">
+        <!-- date and time container -->
+        <div class="date_cont">
+          <div class="date">
+            <mat-form-field class="start-date">
+              <div class="text small-label">Start Date</div>
+              <input type="text" matInput [matDatepicker]="picker" [formControl]="startDate" class="date_input"
+                (dateChange)="dateChange()">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="end-date">
+              <div class="text small-label">End Date</div>
+              <input type="text" matInput [matDatepicker]="endpicker" [formControl]="endDate" class="date_input"
+                (dateChange)="dateChange()">
+              <mat-datepicker-toggle matSuffix [for]="endpicker">
+                <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #endpicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="time">
+            <div>
+              <!-- <mat-label class="text">Start Time</mat-label> -->
+              <!-- <input formControlName="startTime" type="text" class="startTime" id="startTime"> -->
+              <input [formControl]="startTime" type="time" class="startTime" id="startTime"
+                [matTooltip]="'Start Time'">
+            </div>
+
+            <div>
+              <!-- <mat-label class="text">End Time</mat-label> -->
+              <!-- <input formControlName="endTime" type="text" class="endTime" id="endTime"> -->
+              <input [formControl]="endTime" type="time" class="endTime" id="endTime" [matTooltip]="'End Time'">
+            </div>
+
+          </div>
+
+          <div class="error-message">
+            <div *ngIf="dateGroup?.errors?.startDateGreater; else endDateSmallError">
+              End Date cannot be smaller than Start Date.
+            </div>
+              <ng-template #endDateSmallError>
+                <div *ngIf="dateGroup?.errors?.endDateSmaller; else startTimeSmallError">End Date
+                  cannot be smaller the Current Date.</div>
+              </ng-template>
+              <ng-template #startTimeSmallError>
+                <div *ngIf="this.form?.get('timeGroup')?.errors?.invalidTime">
+                  End Time cannot be smaller than Start Time.
+                </div>
+              </ng-template>
+            <!-- <div *ngIf="!dateError"> -->
+            <!-- <div *ngIf="startTime.touched && startTime.invalid || endTime.touched && endTime.invalid">
+                  <div *ngIf="(startTime.errors?.pattern || endTime.errors?.pattern);else error1" class="error-message-date-time">
+                    Invalid
+                    Time</div>
+                  <ng-template #error1>
+                    <div *ngIf="(startTime.errors?.noGreaterStartTime || endTime.errors?.noGreaterStartTime)" class="error-message-date-time">End Time can't be smaller than Start Time</div>
+                  </ng-template>
+                </div> -->
+            <!-- <div *ngIf="endTime.touched && endTime.invalid">
+                  <div *ngIf="endTime.errors?.pattern;else error2" class="invalid_end_time error-message-date-time">Invalid
+                    Time
+                  </div>
+                  <ng-template #error2>
+                    <div *ngIf="endTime.errors?.noGreaterStartTime" class="invalid_end_time error-message-date-time">End
+                      Time-greater</div>
+                  </ng-template>
+                </div> -->
+            <!-- </div> -->
+            <!-- <div *ngIf="!dateError"></div> -->
+          </div>
+        </div>
+
+        <div class="repeat-priority">
+          <!-- Repetition select dropdown  -->
+          <div class="repeat_cont">
+            <mat-form-field class="repetition_dropdown">
+              <mat-label>Repetition</mat-label>
+              <mat-select [(value)]="selectedRepition" name="repeat">
+                <mat-option *ngFor="let repeat of repeats" [value]="repeat">
+                  {{repeat}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+          <!-- Priority select dropdown -->
+          <div class="prior_cont">
+            <mat-form-field class="priority_dropdown">
+              <mat-label>Priority</mat-label>
+              <mat-select [(value)]="selectedPriority" name="priority">
+                <mat-option *ngFor="let priority of priorities" [value]="priority">
+                  {{priority}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="team-and-meeting">
+          <!-- Team select of particular user dropdown -->
+          <div class="team_cont">
+            <!-- <mat-icon class="team_icon">group</mat-icon> -->
+            <mat-form-field class="team_dropdown">
+              <mat-label>Team</mat-label>
+              <mat-select [(value)]="selectedTeamId" name="team">
+                <mat-option *ngFor="let team of teams" [value]="team.teamId">
+                  {{team.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Meeting Link Input-->
+          <div *ngIf="eventComp" class="meet_cont">
+            <!-- <mat-icon class="video_icon">videocam</mat-icon> -->
+            <div class="meeting-form">
+              <!-- <mat-form-field class="meetingLink_form_field"> -->
+              <!-- <input matInput type="text" class="form-control" formControlName="meetingLink" placeholder="Meeting Link"> -->
+              <!-- </mat-form-field> -->
+              <input type="text" class="form-control meeting-link" formControlName="meetingLink"
+                placeholder="Meeting Link" [matTooltip]="'Meeting Link'">
+            </div>
+          </div>
+        </div>
+        <div class="error-message">
+          <!-- <div *ngIf="eventComp && meetingLink.touched && meetingLink.invalid" class="meetingLink_validation_message">
+              <div *ngIf="meetingLink.errors?.required">Meeting Link Required!</div>
+            </div> -->
+        </div>
+
+        <!-- Description Container -->
+        <div class="desc_cont">
+          <mat-icon class="description_icon">menu</mat-icon>
+          <textarea formControlName="description" class="description" placeholder="Add Description"></textarea>
+        </div>
+
+
+        <!-- Attachment Container -->
+        <div class="attach_cont">
+          <mat-icon class="attachment_icon">attachment</mat-icon>
+          <h1 class="attach_desc">Attachments</h1>
+
+          <!-- this Input working will be wrapped under the '+' image -->
+          <input type="file" class="file-input" accept=".png,.jpeg,.pdf,.jpg,.svg,.txt,.zip,.docx,.ppt,.doc,.xlsx"
+            (change)="onFileSelected($any($event).target.files)" #fileUpload>
+
+          <!-- Documents Container  -->
+          <div class="document_container">
+            <div class="doc_cell">
+              <img src="../../../assets/icons/plus.svg" class="doc_image" (click)="fileUpload.click()">
+            </div>
+
+            <div class="doc_cell" *ngFor="let attachment of attachments">
+              <img src="../../../assets/icons/doc.svg" class="doc_image">
+              <div class="doc_name ellipsis" [matTooltip]="attachment.name">{{attachment.name}}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="button" mat-raised-button [mat-dialog-close]>Cancel</button>
+        <button class="button" mat-raised-button [disabled]="!form.valid" (click)="saveTask()">Save</button>
+      </div>
+      <!-- </form> -->
+
+    </div>
+
+  </div>
+</form>
+<!-- <a routerLink="event" routerLinkActive="active"> -->

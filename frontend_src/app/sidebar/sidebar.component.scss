@@ -1,0 +1,30 @@
+@import "../variables.scss";
+@import "../mixins.scss";
+
+.sidebar{
+  box-sizing: border-box;
+  height: 85%;
+  width: 260px;
+  padding: 0 16px;
+
+  .button{
+    width: 126px;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: $medium;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 1.5rem 0rem 1rem 1rem;
+    border: none;
+    border-radius: 28px;
+    background-color: $primary-button-background-color;
+    color: $button-text-color;
+    cursor: pointer;
+
+    @include shadow();
+  }
+
+  .button:hover{
+    background-color: transparentize($primary-button-background-color, 0.1);
+  }
+}

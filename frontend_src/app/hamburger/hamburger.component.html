@@ -1,0 +1,42 @@
+<div class="page-container">
+
+  <header class='header' [style.display]="this.isMenuOpen ? 'flex':'none'">
+    <div class='sub-header'>
+      <button mat-button class="menu-button" (click)="sidenav.toggle(); triggerSideBarChange();">
+        <mat-icon>{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
+      </button>
+
+      <a routerLink="/">
+        <span class="app-title">GROOVE</span>
+      </a>
+    </div>
+
+  </header>
+
+
+  <mat-sidenav-container class="sidenav-container" [@.disabled]=true>
+    <mat-sidenav #sidenav autoFocus="true" mode="side" [(opened)]="isMenuOpen" class="sidenav"
+      (click)="onSidenavClick()">
+
+      <a mat-button routerLink="/" [style.background-color]="this.selected == 1 ? '#543884' : '#262254'"
+        (click)="nextStep(1)">Home</a>
+      <a mat-button routerLink="/calendar" [style.background-color]="this.selected == 2 ? '#543884' : '#262254'"
+        (click)="nextStep(2)">Calendar</a>
+      <mat-expansion-panel class="mat-elevation-z0" [expanded]="this.selected == 3 || this.selected == 999">
+        <mat-expansion-panel-header class="specific-class"
+          [style.background-color]="this.selected == 3 ? '#543884' : '#262254'" (click)="nextStep(3)">
+          <mat-panel-title [style.background-color]="this.selected == 3 ? '#543884' : '#262254'">
+            Teams
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-action-row  *ngFor = "let team of teams; let i = index;"
+        [routerLink]="['/teams', team.teamId]" (click)="highlightTeam(i)" [ngClass]="{'highlight': selectedTeamIndex === i}">
+          <a mat-button >{{team.name}}</a>
+        </mat-action-row>
+
+      </mat-expansion-panel>
+
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>

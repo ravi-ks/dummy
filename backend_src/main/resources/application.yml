@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    origin: https://podcom-frontend-amxbp6pvia-as.a.run.app
+  datasource:
+    url: "jdbc:postgresql://10.111.193.3:5432/podcom"
+    username: "${DB}"
+    password: "${DB}"
+    driverClassName: "org.postgresql.Driver"
+
+  jpa:
+    hibernate:
+      ddl-auto: "update"
+    show-sql: "false"
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: "false"
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+        
+  cloud:
+    gcp:
+      sql:
+        enabled: true
+        instance-connection-name: "hu18-groupb-java:asia-south1:hu20cicd1nik"
+        database-name: "podcom"
+

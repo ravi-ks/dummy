@@ -1,0 +1,52 @@
+@import "../variables.scss";
+@import "../mixins.scss";
+
+.no-task-card{
+  width: 30rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  background-color: $header-background-color;
+  border-radius: 8px;
+  // border: 2px solid red;
+
+  img{
+    width: 20rem;
+    height: 10rem;
+  }
+
+  .info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .no-task{
+      color: $header-text-color;
+      height: 6rem;
+      font-size: 1.5rem;
+      text-align: center;
+      vertical-align: middle;
+      font-weight: $bold;
+      line-height: 1.8rem;
+      padding-top: 2rem;
+      width: 10rem;
+    }
+
+    .add-task{
+      align-self: flex-end;
+      width: 7rem;
+      height: 2.5rem;
+      border-radius: 15px;
+      margin: 0rem auto;
+      margin-bottom: 1rem;
+      text-align: center;
+      line-height: 2.5rem;
+      font-weight: $medium;
+      font-size: 1rem;
+      color: $button-secondary-text-color;
+      background-color: $low-priority-color;
+      cursor: pointer;
+    }
+  }
+}

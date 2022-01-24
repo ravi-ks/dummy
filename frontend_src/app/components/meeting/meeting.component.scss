@@ -1,0 +1,47 @@
+@import "../../variables.scss";
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f0e6ff;
+  border: 0.1px solid #782e84;
+  border-radius: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 0px;
+  box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+}
+
+.meetings {
+  background-color: $header-background-color;
+  height: 100%;
+  margin-top: 16px;
+  overflow-y: auto;
+  position: relative;
+
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+
+    .row {
+      display: flex;
+      height: $mini-pixel-per-hour;
+    }
+
+    .time {
+      border-right: 1px solid $calendar-text-color;
+      color: $calendar-text-color;
+      width: 42px;
+    }
+
+    .border {
+      border-top: 1px dashed #f0e5ff;
+      flex: 1;
+    }
+  }
+}

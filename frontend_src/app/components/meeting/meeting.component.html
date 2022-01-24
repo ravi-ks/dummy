@@ -1,0 +1,9 @@
+<div class="meetings" #parent>
+  <div class="flex-column">
+    <div class="row" *ngFor="let time of times">
+      <div class="time">{{time}}</div>
+      <div class="border"></div>
+    </div>
+  </div>
+  <app-event-list-item *ngFor="let meet of meetings" [task]="meet" (click)="openDescription(meet)"></app-event-list-item>
+</div>

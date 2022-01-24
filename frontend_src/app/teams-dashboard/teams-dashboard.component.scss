@@ -1,0 +1,129 @@
+@import "../variables";
+
+.dash_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: calc(100vh - #{$header-height});
+  width: 100%;
+  // border: 1px solid black;
+
+  .task_container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    width: calc(100% - 350px);
+  }
+
+  .calendar_container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-left: 3rem;
+    padding-top: 1rem;
+    width: 350px;
+  }
+
+  .calendar {
+    height: 312px;
+    h1{
+      margin-bottom: 0rem;
+    }
+  }
+
+  .mini-calendar {
+    margin: 0rem auto;
+    max-width: 250px;
+    position: relative;
+    top: -0.5rem;
+  }
+
+  .meetings {
+    height: calc(100vh - 345px - #{$header-height} - 2rem);
+  }
+
+  .to_do_task {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .todo-container {
+    height: calc(100vh - 290px - 1.5rem - #{$header-height});
+    margin: 0 auto;
+    overflow-y: auto;
+    padding-right: 8px;
+    width: fit-content;
+  }
+
+  .to_do_task_list {
+    column-gap: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 16px;
+  }
+
+  .no-task {
+    margin-bottom: 1rem;
+  }
+}
+
+h1 {
+  color: #782e84;
+  font-size: 1.5rem;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.title{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .add-new-task{
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 16px;
+    margin-left: 1rem;
+    background-color: $header-background-color;
+    border: 1px solid $high-priority-color;
+
+    .icon{
+      color: $high-priority-color;
+    }
+
+    &:hover{
+      background-color: $high-priority-color;
+
+      .icon{
+        color: $header-background-color;
+      }
+    }
+  }
+}
+
+::ng-deep .mat-fab .mat-button-wrapper{
+  height: 2rem;
+  padding: 0rem;
+  vertical-align: middle;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f0e6ff;
+  border: 0.1px solid #782e84;
+  border-radius: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 0px;
+  box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+}

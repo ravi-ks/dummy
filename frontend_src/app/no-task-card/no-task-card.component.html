@@ -1,0 +1,15 @@
+<div class="no-task-card">
+  <div class="image">
+    <img src="../../assets/icons/noTasks.svg" alt="No Tasks">
+  </div>
+
+  <div class="info">
+    <div class="no-task">
+      {{title}}
+    </div>
+
+    <div class="add-task" (click)="onAddTask.emit()">
+      Add Task
+    </div>
+  </div>
+</div>

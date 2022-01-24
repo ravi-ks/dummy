@@ -1,0 +1,213 @@
+@import "../../variables.scss";
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #adadad #ffffff;
+}
+
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $header-background-color;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #adadad;
+  border: 3px solids #ffffff;
+  border-radius: 10px;
+}
+
+.flex-row {
+  background-color: $header-background-color;
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: calc(100vh - #{$header-height});
+  margin-left: 16px;
+}
+
+.time-info {
+  width: 50px;
+  align-self: stretch;
+}
+
+.week-header {
+  align-items: center;
+  color: $primary-avatar-background-color;
+  display: flex;
+  font-size: 0.688rem;
+  justify-content: space-around;
+  padding-right: 16px;
+
+  & > div {
+    position: relative;
+  }
+
+  .name {
+    text-transform: uppercase;
+  }
+
+  .week {
+    border-bottom: 1px solid $calendar-border-color;
+    box-sizing: border-box;
+    flex: 1;
+    padding: 1rem 0;
+    text-align: center;
+
+    &::after {
+      background-color: $calendar-border-color;
+      bottom: -1px;
+      content: "";
+      display: block;
+      height: 30%;
+      left: 0;
+      position: absolute;
+      width: 1px;
+    }
+  }
+
+  .day {
+    display: flex;
+    font-size: 1.625rem;
+    height: $calendar-header-date-size;
+    margin: 0.3rem auto 0 auto;
+    padding: 4px;
+    width: $calendar-header-date-size;
+
+    &.selected {
+      background-color: $primary-button-background-color;
+      border-radius: 50%;
+      color: $button-text-color;
+    }
+
+    p {
+      margin: auto;
+    }
+  }
+}
+
+.cells {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  scrollbar-width: 16px;
+}
+
+.cells-bg {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  &.Day {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cells-fg {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 1200px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  .weekwise {
+    box-sizing: border-box;
+    padding: 0 2px;
+    position: relative;
+  }
+
+  &.Day {
+    grid-template-columns: 1fr;
+    position: relative;
+  }
+}
+
+.cell {
+  border-bottom: 1px solid $calendar-border-color;
+  border-left: 1px solid $calendar-border-color;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.time-cell {
+  height: 50px;
+  position: relative;
+
+  span {
+    position: absolute;
+    top: -11px;
+  }
+
+  &::after {
+    background-color: $calendar-border-color;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    right: 0;
+    width: 30%;
+  }
+}
+
+.monthly-cells {
+  color: $primary-avatar-background-color;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 100%;
+  padding-top: 8px;
+
+  .cell {
+    border-left: 1px solid $calendar-border-color;
+    border-top: 1px solid $calendar-border-color;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+
+    .date,
+    .week-name {
+      text-align: center;
+    }
+
+    .week-name {
+      color: $medium-priority-color;
+      font-size: 11px;
+    }
+
+    .date {
+      display: flex;
+
+      div {
+        border-radius: 50%;
+        height: 24px;
+        line-height: 24px;
+        margin: auto;
+      }
+
+      &.selected {
+        div {
+          background-color: $primary-button-background-color;
+          color: $button-text-color;
+          width: 24px;
+        }
+      }
+    }
+  }
+
+  .no-border-top {
+    border-top: none;
+  }
+}

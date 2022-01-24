@@ -1,0 +1,52 @@
+<header>
+
+  <div class="left-side">
+    <div class="hamburger" (click)="openNavigation()" [class.disappear]="sidebarOpen">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+
+    <a class="logo" [class.disappear]="sidebarOpen" routerLink="/">GROOVE</a>
+
+
+  </div>
+
+  <div class="middle">
+    <div class="goToPrevious arrow" (click)="goToPrevious()">
+      <img src="../../assets/icons/arrow.svg" alt="Go to next">
+    </div>
+
+    <div class="date">
+      <div *ngIf="showFullDate; else elseBlock">
+        {{ day }} {{ month }} {{ year }}
+      </div>
+      <ng-template #elseBlock>{{ month }} {{ year }}</ng-template>
+    </div>
+
+    <div class="goToNext arrow" (click)="goToNext()">
+      <img src="../../assets/icons/arrow.svg" alt="Go to next">
+    </div>
+  </div>
+
+  <div class="right-side">
+    <mat-form-field class="view-type" [class.hide]="homeScreen">
+      <mat-select [value]="selectedOption" (selectionChange)=selectionChanged($event.value)>
+        <mat-option [value]="option" *ngFor="let option of viewTypeOptions">{{ option }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="teams" (click)="onClickingTeams()">
+      <img src="../../assets/icons/teams.svg" alt="Teams">
+    </div>
+
+    <div class="avatar" [matMenuTriggerFor]="menu" (click)="onClickingAvatar()">
+        {{ initials }}
+    </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logOut()">LogOut</button>
+    </mat-menu>
+
+
+  </div>
+</header>

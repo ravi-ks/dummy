@@ -1,0 +1,81 @@
+<div class="popup-container" *ngIf="taskDescription !== null">
+  <div class="head">
+    <div class="edit" (click)="editTask()" *ngIf="taskDescription.isOrganizer && !completed">
+      <img src="../../assets/icons/Pencil.svg" alt="Edit">
+    </div>
+
+    <div class="delete" (click)="confirmDelete()" *ngIf="taskDescription?.isOrganizer">
+      <img src="../../assets/icons/Delete.svg" alt="Delete">
+    </div>
+
+    <div class="close" [mat-dialog-close]>
+      <img src="../../assets/icons/Close.svg" alt="Close">
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="title">{{ taskDescription.title }}</div>
+
+    <div class="date-and-time">
+      <div class="date">
+        {{ date }}
+      </div>
+      <div class="time">
+        {{ startTime }} - {{ endTime }}
+      </div>
+    </div>
+
+    <div class="description">
+      <div class="heading">Description</div>
+
+      <div class="content">
+        {{ taskDescription?.description }}
+        <a href="{{taskDescription.meetingLink}}" target="_blank" *ngIf="isAMeeting">
+          Join Meeting
+          <img src="../../assets/icons/videoCall.svg" alt="">
+        </a>
+      </div>
+
+      <div class="attachments" *ngIf="hasAttachments">
+        <div class="attachment" *ngFor="let attachment of taskDescription.attachments">
+          <a (click)="downloadAttachment(attachment.name)">
+            <img src="../../assets/icons/document.svg" alt="Open Attachment">
+            <div class="name">
+              {{ attachment.name }}
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="teamTask" *ngIf="teamTask && taskDescription?.isOrganizer; else task">
+      <div class="info">
+        <div class="completed-by">
+          <img src="../../assets/icons/people.svg">
+          Completed By: {{ taskDescription?.totalChecks }} / {{ taskDescription?.totalMemberInTeam }}
+        </div>
+      </div>
+    </div>
+
+    <ng-template #task>
+      <div class="task">
+        <div class="avatar" matTooltip={{organizerName}}>
+          {{ organizerInitials }}
+        </div>
+
+        <div class="checkButton" (click)="checkUncheck()" #taskCompletion *ngIf="!isAMeeting">
+          <div class="text" *ngIf="completed; else incomplete">
+            Completed
+          </div>
+
+          <ng-template #incomplete>
+            Mark as Complete
+          </ng-template>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="sidebarCalendar">
+      <div class="header">
+        <div class="goToPrevious arrow" (click)="goToPreviousMonth()">
+          <img src="../../assets/icons/arrow.svg" alt="goToPreviousMonth">
+        </div>
+
+        <div class="date">
+          {{ month }} {{year}}
+        </div>
+
+        <div class="goToNext arrow" (click)="goToNextMonth()">
+          <img src="../../assets/icons/arrow.svg" alt="goToNextMonth">
+        </div>
+      </div>
+
+      <mat-calendar [selected]="selected" (selectedChange)="selectedDateChanged($event)" #calendar></mat-calendar>
+</div>
+

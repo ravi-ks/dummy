@@ -1,0 +1,5 @@
+<div *ngIf="task !== null" class="meeting" [ngClass]="task.priority" [style.height.px]="height" [style.top.px]="top">
+  <span>
+    {{task.title}}
+  </span>
+</div>

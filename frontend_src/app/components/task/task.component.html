@@ -1,0 +1,9 @@
+<mat-card *ngIf="task !== null" [ngClass]="['task-card',task.priority,task.checked+'']">
+  <div *ngIf="check && !task.checked" class="check" (click)="checkTask($event)">
+    <mat-icon class="tick" *ngIf="task.checked">done</mat-icon>
+  </div>
+  <mat-card-content class="task-detail">
+    <span>{{task.title}}</span>
+    <span>{{startTime}} - {{endTime}}</span>
+  </mat-card-content>
+</mat-card>

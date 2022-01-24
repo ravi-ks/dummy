@@ -1,0 +1,32 @@
+@import "../../../variables.scss";
+
+.dot {
+  border-radius: 50%;
+  height: 10px;
+  margin: auto 2px auto 0;
+  width: 10px;
+
+  &.HIGH {
+    background-color: $high-priority-color;
+  }
+
+  &.LOW {
+    background-color: $low-priority-color;
+  }
+
+  &.MEDIUM {
+    background-color: $medium-priority-color;
+  }
+}
+
+.task-monthly {
+  border: 1px solid $header-background-color;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.8rem;
+  padding: 0 4px;
+
+  &:hover {
+    border: 1px solid;
+  }
+}

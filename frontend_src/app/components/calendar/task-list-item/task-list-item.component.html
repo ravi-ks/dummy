@@ -1,0 +1,4 @@
+<div *ngIf="task !== null" class="task-monthly">
+  <div class="dot" [ngClass]="task.priority"></div>
+  {{startingTime}} {{task.title}}
+</div>

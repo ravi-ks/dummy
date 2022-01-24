@@ -1,0 +1,7 @@
+<div *ngIf="task !== null" class="task-button" [ngClass]="classes" [style.height.px]="height" [style.top.px]="top"
+  (click)="onClick.emit()">
+  <span>
+    {{task.title}}
+  </span>
+  <span class="time">{{startTime}} - {{endTime}}</span>
+</div>

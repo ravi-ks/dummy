@@ -1,0 +1,253 @@
+@import "../variables.scss";
+@import "../mixins.scss";
+
+::ng-deep .mat-pseudo-checkbox.mat-pseudo-checkbox-checked{
+  background-color: $primary-text-color;
+}
+
+::ng-deep .mat-list{
+  height: 150px;
+  white-space: nowrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+    }
+  &::-webkit-scrollbar-thumb{
+    background: #543884;
+    border-radius: 4px;
+    }
+  &::-webkit-scrollbar-thumb:hover{
+    background: #262254;
+    }
+  &::-webkit-scrollbar-track{
+    background: #F0E5FF;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+    }
+}
+::ng-deep .mat-button-wrapper{
+  padding: 0rem !important;
+  // color: $popup-background-color;
+}
+
+::ng-deep .mat-input-element{
+  color: $primary-text-color;
+  // font-size: 1rem;
+}
+
+mat-label{
+  color: $primary-text-color;
+}
+
+::ng-deep.mat-form-field-underline{
+  background-color: $primary-text-color !important;
+}
+
+::ng-deep .mat-list-item.mat-list-option.mat-focus-indicator.mat-2-line.mat-accent.ng-star-inserted{
+  height: 3.5rem !important;
+}
+
+::ng-deep .mat-form-field-infix{
+  border-top: 0rem;
+}
+
+::ng-deep .mat-pseudo-checkbox.ng-star-inserted{
+  display: none;
+}
+
+.popup{
+  background-color: $popup-background-color;
+  border-radius: 10px;
+  color: $primary-text-color;
+  height: 460px;
+  margin: 0.5rem 1rem;
+  padding: 0.7rem 0.5rem;
+  width: 250px;
+
+  .heading{
+
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .details{
+    margin-top: 1.3rem;
+    height: 8.7rem;
+
+    .team-name{
+      height: 3.5rem;
+      width: 100%;
+    }
+
+    .member{
+      margin-top: 0rem;
+      height: 3.5rem;
+    }
+
+    .error-info{
+      position: relative;
+      top: -25px;
+      height: 1rem;
+      display: block;
+      font-size: 0.8rem;
+      margin: 0rem;
+      padding: 0rem;
+    }
+  }
+
+  .list{
+    margin-top: 0rem;
+    padding-right: 0.3rem;
+    .member-count{
+      margin-top: 0.4rem;
+    }
+  }
+
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    .cancel-button{
+      color: $primary-text-color !important;
+      // background-color: $popup-background-color;
+    }
+
+    .delete-button{
+      background-color: $popup-background-color;
+      color: $primary-text-color;
+    }
+
+    .create-button{
+      background-color: $primary-text-color;
+      color: $button-secondary-text-color;
+    }
+
+    // .deleteTeam{
+    //   width: 2.5rem;
+    //   height: 2.5rem;
+
+    //   background-color: $low-priority-color;
+    // }
+  }
+
+  .user-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .avatar{
+      height: 1.8rem;
+      width: 1.8rem;
+      border-radius: 100%;
+      line-height: 1.8rem;
+      text-align: center;
+      color: $popup-background-color;
+      background-color: $primary-text-color;
+      font-size: 1rem;
+      // margin-right: 0.5rem;
+    }
+
+    .pinfo{
+      width: 7rem;
+      height: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h3{
+        margin: 0rem;
+        width: 7.5rem;
+      }
+
+      p{
+        margin: 0rem;
+      }
+    }
+
+    .removeMemberButton{
+      height: 1.5rem;
+      width: 1.5rem;
+      cursor: pointer;
+      background: url("../../assets/icons/removeMember.svg") no-repeat;
+      background-size: 1.5rem 1.5rem ;
+
+      &:hover{
+        background: url("../../assets/icons/deleteFromList.svg") no-repeat;
+        background-size: 1.5rem 1.5rem ;
+      }
+    }
+  }
+}
+
+.ellipsis{
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.update-popup{
+  background-color: $header-background-color;
+  border-radius: 5px;
+}
+
+
+.add-member{
+  margin-left: 15px;
+  font-size: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: $primary-text-color;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0rem;
+
+  .mat-icon{
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 2rem !important;
+    line-height: 2rem !important;
+    padding: 0rem !important;
+    margin: 0rem;
+
+    img{
+      height: 2rem;
+      width: 1.7rem;
+    }
+  }
+}
+
+
+::ng-deep{
+  .mat-form-field.mat-focused.mat-primary .mat-select-arrow, .mat-select-arrow{
+    color: $primary-text-color;
+  }
+
+  .mat-select-panel{
+    background-color: $header-background-color;
+
+    &::-webkit-scrollbar{
+      width: 4px;
+      height: 4px;
+      }
+    &::-webkit-scrollbar-thumb{
+      background: #543884;
+      border-radius: 4px;
+      }
+    &::-webkit-scrollbar-thumb:hover{
+      background: #262254;
+      }
+    &::-webkit-scrollbar-track{
+      background: #F0E5FF;
+      border-radius: 0px;
+      box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+      }
+  }
+}
+
+.height200px{
+  height: 200px;
+}

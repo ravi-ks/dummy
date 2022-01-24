@@ -1,0 +1,59 @@
+<div class="dash_container">
+
+  <div class="task_container">
+
+    <div class="today_task">
+      <div class="title">
+        <h1>Today's Tasks</h1>
+        <button class="add-new-task" mat-fab (click)="addNewTask()">
+          <mat-icon class="icon">add</mat-icon>
+        </button>
+      </div>
+      <div class="no-task" *ngIf="todaysTasks.length === 0">
+        <app-no-task-card (onAddTask)="addNewTask()"></app-no-task-card>
+      </div>
+      <carousel *ngIf="todaysTasks.length > 0" [loop]="true" [cellsToScroll]="1" [cellsToShow]="3" [lightDOM]="true"
+        class="carousel-slider-alignment">
+        <div class="carousel-cell" *ngFor="let task of todaysTasks">
+          <app-task [task]="task" [check]="false" (click)="taskDescription(task)"></app-task>
+        </div>
+
+      </carousel>
+    </div>
+
+    <div class="to_do_task">
+      <h1>Upcoming Tasks</h1>
+      <div class="no-task" *ngIf="todoTasks.length === 0">
+        <app-no-task-card title="No Upcoming Tasks" (onAddTask)="addNewTask()"></app-no-task-card>
+      </div>
+
+      <div class="todo-container">
+        <div class="to_do_task_list">
+          <app-task *ngFor="let todo of todoTasks" [check]="false" [task]="todo" (click)="taskDescription(todo)"></app-task>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="calendar_container">
+    <app-create-team-popup [teamId] = "teamId"></app-create-team-popup>
+  </div>
+</div>
+  <!--
+
+    <div class="calendar">
+      <h1>Your Calendar</h1>
+      <div class="mini-calendar">
+        <app-sidebar-calendar></app-sidebar-calendar>
+      </div>
+    </div>
+
+    <div class="meetings">
+      <h1>Meetings</h1>
+      <app-meeting [height]="100"></app-meeting>
+    </div>
+
+  </div>
+
+</div>
+-->

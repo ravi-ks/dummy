@@ -1,0 +1,115 @@
+@import "../../variables.scss";
+
+.task-card {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 9rem;
+  width: 10rem;
+
+  .task-detail {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .check {
+    border: 1px solid $white-color;
+    box-sizing: border-box;
+    height: 1.2rem;
+    position: relative;
+    width: 1.2rem;
+
+    .tick {
+      bottom: -0.2rem;
+      color: $high-priority-color;
+      left: -0.2rem;
+      position: absolute;
+    }
+  }
+
+  span {
+    font-size: 1.1rem;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  &.HIGH {
+    background-color: $high-priority-color;
+    color: $high-priority-text-color;
+  }
+
+  &.LOW {
+    background-color: $low-priority-color;
+    color: $low-priority-text-color;
+  }
+
+  &.MEDIUM {
+    background-color: $medium-priority-color;
+    color: $high-priority-color;
+  }
+
+  &.true {
+    background-color: $task-card-checked-background;
+    color: $high-priority-color;
+  }
+}
+
+// @mixin task_property($bgColor, $fontColor) {
+//   background: $bgColor;
+//   cursor: pointer;
+//   height: 9rem;
+//   padding: 0;
+//   width: 10rem;
+
+//   // top: 1.5rem;
+//   // left: 1rem;
+//   .task_detail {
+//     align-items: center;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     left: 1.5rem;
+//     overflow-y: hidden;
+//     position: absolute;
+//     top: 2.4rem;
+
+//     h1 {
+//       color: $fontColor;
+//       font-size: 1.1rem;
+//       margin: 0;
+//       white-space: nowrap;
+//     }
+//   }
+//   .check {
+//     top: 0.5rem;
+//     left: 0.5rem;
+//     position: absolute;
+//     border: 1px solid #ffffff;
+//     box-sizing: border-box;
+//     width: 1.2rem;
+//     height: 1.2rem;
+//     .tick {
+//       position: absolute;
+//       bottom: -0.2rem;
+//       left: -0.2rem;
+//       color: #782e84;
+//     }
+//   }
+// }
+
+// .high_prior {
+//   @include task_property(#782e84, #e0cbff);
+// }
+// .med_prior {
+//   @include task_property(#cdb0f9, #782e84);
+// }
+// .low_prior {
+//   @include task_property(#ffa45e, #782e84);
+// }
+// .completed {
+//   @include task_property(#c4c3c5, #782e84);
+// }

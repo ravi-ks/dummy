@@ -1,0 +1,61 @@
+@import "../variables.scss";
+
+.task-button {
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 10px;
+  position: absolute;
+  right: 2px;
+  top: 100px;
+  width: calc(100% - 4px);
+
+  span {
+    margin: auto;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  &.row {
+    flex-direction: row;
+    justify-content: center;
+
+    span {
+      margin: 0;
+    }
+
+    .time {
+      margin-left: 8px;
+
+      &::before {
+        content: ",";
+      }
+    }
+  }
+
+  &.week {
+    border-radius: 4px;
+    justify-content: start;
+  }
+
+  &.HIGH {
+    background-color: $high-priority-color;
+    color: $high-priority-text-color;
+  }
+
+  &.LOW {
+    background-color: $low-priority-color;
+    color: $low-priority-text-color;
+  }
+
+  &.MEDIUM {
+    background-color: $medium-priority-color;
+    color: $high-priority-color;
+  }
+}

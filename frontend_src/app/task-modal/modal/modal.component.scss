@@ -1,0 +1,576 @@
+@import "../../mixins.scss";
+@import "../../variables.scss";
+
+.task_modal {
+  display: flex;
+  flex-direction: column;
+  //border : 2px solid black;
+  width: 25rem;
+  // height : 37rem;//changes here
+  background: #f7f4fa;
+  .header_cont {
+    display: none;
+    flex: 0.7;
+    position: relative;
+    // background: #F0E5FF;
+    //border : 2px solid black;
+    cursor: move;
+    .close {
+      position: absolute;
+      left: 23rem;
+      top: 0.3rem;
+      color: #782e84;
+      cursor: pointer;
+    }
+  }
+
+  .title_cont {
+    margin-top: 0.8rem;
+    flex: 1.2;
+    // position: relative;
+    //border : 2px solid black;
+    .title_form_field {
+      top: 0.5rem;
+      left: 1rem;
+      width: 22rem;
+    }
+    .taskTitle {
+      position: absolute;
+      top: 0.7rem;
+      left: 1rem;
+      width: 22rem;
+      height: 1.5rem;
+      background: #f7f4fa;
+    }
+    // position: relative;
+    // left: 1rem;
+    // top: 0.5rem;
+    // width: 22rem;
+    .title_validation_message {
+      position: relative;
+      // top: 3rem;
+      left: 1rem;
+      top: -0.3rem;
+      // color : #782E84;
+      display: inline-block;
+    }
+  }
+
+  .nav_cont {
+    flex: 9;
+    //border : 2px solid black;
+    // position: relative;
+    .event_btn_active {
+      position: relative;
+      left: 1rem;
+      border: none;
+      background: $low-priority-color;
+      height: 2rem;
+      width: 4rem;
+      color: $header-background-color;
+      font-weight: bold;
+      @include shadow();
+    }
+    .event_btn_inActive {
+      position: relative;
+      left: 1rem;
+      border: none;
+      background: #f7f4fa;
+      height: 2rem;
+      width: 4rem;
+      color: #543884;
+    }
+    .task_btn_active {
+      // position: absolute;
+      position: relative;
+      left: 2rem;
+      border: none;
+      background: $low-priority-color;
+      height: 2rem;
+      width: 4rem;
+      color: $header-background-color;
+      font-weight: bold;
+      @include shadow();
+    }
+    .task_btn_inActive {
+      // position: absolute;
+      position: relative;
+      left: 2rem;
+      border: none;
+      background: #f7f4fa;
+      height: 2rem;
+      width: 4rem;
+      color: #543884;
+    }
+  }
+  .event_cont {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    height: 28rem; //changes here
+    background: #f7f4fa;
+
+    //Date Container-Date,Start Time,End Time
+    .date_cont {
+      margin-top: 0.5rem;
+      // flex : 1.5;
+      //border : 2px solid black;
+      // position: relative;
+      // .invalid_start_time{
+      // position: absolute;
+      // left: 11rem;
+      // top: 2.8rem;
+      // color: #782E84;
+      // width: 7rem;
+      // font-size: 0.8rem;
+      // }
+      // .invalid_end_time{
+      // position: absolute;
+      // left: 17.9rem;
+      // top: 2.8rem;
+      // color : #782E84;
+      // width: 7rem;
+      // font-size: 0.8rem;
+      // }
+
+      .date {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .end-date {
+        margin-right: 2rem;
+      }
+      .start-date {
+        margin-left: 2rem;
+      }
+      .small-label {
+        padding: 0.3rem 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .start-date,
+      .end-date {
+        // position: absolute;
+        background: #ffffff;
+        // width: 9rem;
+        height: 0;
+        // top: 0.4rem;
+        // left: 1rem;
+        .date_input {
+          font-size: 1rem;
+          text-align: center;
+          color: #782e84;
+        }
+        ::ng-deep .mat-form-field-flex {
+          width: 8rem;
+          background: transparent;
+          border: 2px solid $popup-background-color;
+          border-radius: 8px;
+          @include shadow();
+        }
+        ::ng-deep .mat-form-field-infix {
+          padding: 0.5rem 0rem;
+          // border-top: 0.2rem;
+          // padding:
+        }
+        ::ng-deep .mat-form-field-underline {
+          display: none;
+        }
+      }
+      .time {
+        margin: 5rem 1rem 0rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      .startTime {
+        // position: absolute;
+        // width: 5rem;
+        // height: 2rem;
+        padding: 0.3rem;
+        // margin-left: 0.8rem;
+        // top: 0.7rem;
+        // left: 11rem;
+        background: transparent;
+        border: 2px solid $popup-background-color;
+        border-radius: 8px;
+        color: $high-priority-color;
+        text-align: center;
+        @include shadow();
+
+        &:focus {
+          outline: none;
+        }
+      }
+      .endTime {
+        // position: absolute;
+        // width: 5rem;
+        // height: 2rem;
+        padding: 0.3rem;
+        // margin-left: 0.8rem;
+        // top: 0.7rem;
+        // left: 17.5rem;
+        background: transparent;
+        border: 2px solid $popup-background-color;
+        border-radius: 8px;
+        color: $high-priority-color;
+        text-align: center;
+        @include shadow();
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .repeat-priority {
+      padding: 0rem 2rem;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      // margin-bottom: 1.3rem;
+      // height: 3rem;
+      // border: 2px solid red;
+    }
+
+    .repeat_cont {
+      display: inline-block;
+      // flex : 1;
+      // border : 2px solid black;
+      // position: relative;
+      // .repetition_dropdown{
+      //   position : absolute;
+      //   left: 1rem;
+      // }
+      ::ng-deep .mat-form-field-wrapper {
+        width: 8rem;
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+        background: transparent;
+        // border: 2px solid red;
+        border-bottom: 2px solid $high-priority-color;
+        border-radius: 8px;
+        // height: 2.2rem;
+      }
+      ::ng-deep .mat-form-field-underline {
+        display: none;
+        // color: red;
+      }
+    }
+
+    .prior_cont {
+      // flex : 1;
+      display: inline-block;
+      //border : 2px solid black;
+      // position: relative;
+      // .priority_dropdown{
+      //   position : absolute;
+      //   left: 1rem;
+      // }
+      ::ng-deep .mat-form-field-wrapper {
+        width: 8rem;
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+        background: transparent;
+        // border: 2px solid red;
+        border-bottom: 2px solid $high-priority-color;
+        border-radius: 8px;
+      }
+      ::ng-deep .mat-form-field-underline {
+        display: none;
+      }
+    }
+
+    .team-and-meeting {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // padding: 0rem 1rem 0.3rem 1rem;
+      padding: 0rem 2rem;
+    }
+    .team_cont {
+      // flex : 1;
+      display: inline-block;
+      // margin-left: 0.5rem;
+      // border : 2px solid red;
+      position: relative;
+      .team_icon {
+        position: absolute;
+        left: 1rem;
+        top: 0.5rem;
+      }
+      .team_dropdown {
+        // position : absolute;
+        // left: 3rem;
+        border-bottom: 2px solid $high-priority-color;
+        border-radius: 8px;
+      }
+      ::ng-deep .mat-form-field-wrapper {
+        width: 8rem;
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+        background: transparent;
+        // border: 2px solid red;
+        border-radius: 8px;
+      }
+      ::ng-deep .mat-form-field-underline {
+        display: none;
+      }
+    }
+
+    .meet_cont {
+      // flex : 1;
+      // margin-right: 0.5rem;
+      display: inline-block;
+      // border : 2px solid red;
+      // position: relative;
+      // box-sizing: border-box;
+      // padding-top: 1.30em;
+      // height: 2.5rem;
+      .video_icon {
+        position: absolute;
+        left: 1rem;
+        top: 0.8rem;
+      }
+      .meeting-form {
+        // position: absolute;
+        // left: 3rem;
+        // margin-top: 0.5rem;
+        padding-top: 0.4rem;
+        // width: wrap;
+        // margin-right: 1rem;
+        border-radius: 8px;
+        border-bottom: 2px solid $high-priority-color;
+      }
+    }
+
+    .desc_cont {
+      flex: 1;
+      margin-top: 1.3rem;
+      // margin-top: 0.8rem;
+      //border : 2px solid black;
+      position: relative;
+      .description_icon {
+        position: absolute;
+        left: 1rem;
+        top: 0.8rem;
+      }
+      .description {
+        position: absolute;
+        left: 3rem;
+        top: 0.1rem;
+        width: 19.5rem;
+        height: 2.3rem;
+        background: #f7f4fa;
+        resize: none;
+        border-color: $high-priority-color;
+        padding: 0.3rem;
+        color: $high-priority-color;
+        outline: none;
+      }
+    }
+
+    .attach_cont {
+      margin-top: 1.2rem;
+      flex: 2.1;
+      // margin-top: 0.8rem;
+      //border : 2px solid black;
+      position: relative;
+      .attachment_icon {
+        position: absolute;
+        left: 1rem;
+        top: 0.1rem;
+      }
+      .attach_desc {
+        position: absolute;
+        left: 3rem;
+        font-size: 0.8rem;
+      }
+      .file-input {
+        display: none;
+      }
+      .document_container {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 22rem;
+        height: 4.5rem;
+        position: absolute;
+        top: 1.5rem;
+        left: 1rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        // border: 2px solid red;
+        .doc_cell {
+          width: 5rem;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          justify-content: center;
+          .doc_image {
+            width: 2rem;
+            // position: relative;
+            // top: 0.2rem;
+            vertical-align: middle;
+          }
+
+          .doc_name {
+            font-size: 0.7rem;
+            // position: relative;
+            // top: -0.8rem;
+            // margin: 0rem;
+            // padding: 0rem;
+            width: inherit;
+          }
+        }
+      }
+    }
+
+    // .submit{
+    //   // flex : 1;
+    //   // margin-top: 4rem;
+    //   //border : 2px solid black;
+    //   // position: relative;
+    //   .submit_btn{
+    //     position: absolute;
+    //     top: 0rem;
+    //     left: 18.8rem;
+    //     border: none;
+    //     background: #F0E5FF;
+    //     color: #543884;
+    //     height: 2rem;
+    //     width: 4rem;
+    //   }
+    // }
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 1px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #f0e6ff;
+    border: 0.05px solid #782e84;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    border-top: 0rem;
+  }
+
+  // .flex1{
+  // flex: 1.25 !important;
+  // }
+
+  .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mat-icon {
+    color: $high-priority-color;
+  }
+
+  ::ng-deep {
+    .mat-select-value-text,
+    .mat-input-element,
+    .mat-select-arrow,
+    .mat-form-field.mat-focused.mat-primary .mat-select-arrow,
+    .mat-form-field-hide-placeholder .mat-select-placeholder {
+      color: $high-priority-color;
+    }
+  }
+
+  .text {
+    color: $high-priority-color;
+    font-size: 0.8rem;
+    font-weight: $medium;
+    text-align: center;
+  }
+
+  ::ng-deep .mat-input-underline {
+    display: none;
+  }
+
+  .meeting-link {
+    height: 2rem;
+    border: none;
+    outline: none;
+    padding: 0rem 0.3rem;
+    background-color: transparent;
+    font-size: 1rem;
+    width: 9rem;
+    color: $high-priority-color;
+  }
+
+  .error-message {
+    padding: 0rem 1rem;
+    height: 0.8rem;
+    color: $error-color;
+    .error-message-date-time {
+      font-size: 0.8rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .meetingLink_validation_message {
+      // position: absolute;
+      // top: 2.4rem
+      text-align: right;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .buttons {
+    margin: 1rem 1rem 0.4rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .button {
+    // width: 4rem;
+    height: 2rem;
+    background-color: $low-priority-color;
+    color: $calendar-selected-text-color;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.8rem;
+    @include shadow();
+  }
+
+  ::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ffa45e;
+
+    border-radius: 0px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffa45e;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+  }
+}
+
+.error-message {
+  font-size: 0.8rem;
+  height: 0.8rem;
+  margin-bottom: 0.2rem;
+  color: red;
+}
+
+// ::ng-deep .mat-dialog-container{
+
+// }

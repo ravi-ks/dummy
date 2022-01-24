@@ -1,0 +1,244 @@
+@import "../variables.scss";
+@import "../mixins.scss";
+
+.popup-container{
+  margin: 0.5rem 1rem;
+  max-height: 350px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 300px;
+
+  &::-webkit-scrollbar{
+    width: 3px;
+    height: 3px;
+    }
+
+  &::-webkit-scrollbar-thumb{
+    background: #543884;
+    border-radius: 0px;
+    }
+
+  &::-webkit-scrollbar-thumb:hover{
+    background: #543884;
+    }
+
+  &::-webkit-scrollbar-track{
+    background: #CDB0F9;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+    }
+
+  .head{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .edit, .delete{
+      margin-right: 0.5rem;
+    }
+
+    .edit, .delete, .close{
+      width: 1.2rem;
+      height: 1.2rem;
+      cursor: pointer;
+      img{
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+  }
+
+  .body{
+    margin: 5px 15px;
+    color: $primary-text-color;
+
+    .title{
+      font-size: 1rem;
+      font-weight: $medium;
+    }
+
+    .date-and-time{
+      display: flex;
+      font-size: 0.7rem;
+      font-weight: $light;
+
+      .time{
+        margin-left: 1.3rem;
+        display: list-item;
+        list-style-type: disc;
+        list-style-position: inherit;
+      }
+    }
+
+    .description{
+      margin-top: 1rem;
+      .heading{
+        font-size: 0.85rem;
+        font-weight: $medium;
+      }
+
+      .content{
+        font-size: 0.8rem;
+        font-weight: $light;
+
+        a{
+          margin-top: 0.5rem;
+          display: block;
+          height: 30px;
+          line-height: 30px;
+          border-radius: 15px;
+          text-align: center;
+          color: $primary-text-color;
+          background-color: $meeting-link-background-color;
+          font-size: 1rem;
+          font-weight: $medium;
+          text-decoration: none;
+
+          img{
+            height: 25px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            padding-bottom: 0.2rem;
+          }
+
+          &:hover{
+            @include shadow();
+            -webkit-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            transition: all 0.5s;
+          }
+        }
+
+      }
+    }
+
+    .attachments{
+      width: 100%;
+      height: 70px;
+      margin: 1rem 0rem 0.25rem 0rem;
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      &::-webkit-scrollbar{
+        width: 1px;
+        height: 1px;
+        }
+
+      &::-webkit-scrollbar-thumb{
+        background: #543884;
+        border-radius: 0px;
+        }
+
+      &::-webkit-scrollbar-thumb:hover{
+        background: #543884;
+        }
+
+      &::-webkit-scrollbar-track{
+        background: #CDB0F9;
+        border-radius: 0px;
+        box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+        }
+
+      &:first-child{
+        margin-left: 0rem !important;
+      }
+
+      &:last-child{
+        margin-right: 0rem !important;
+      }
+
+      .attachment{
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        cursor: pointer;
+
+        margin: 0rem 0.25rem;
+        img{
+          width: 40px;
+          height: 40px;
+        }
+
+        .name{
+          text-align: center;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 0rem 0.1rem;
+        }
+      }
+    }
+  }
+
+  .foot{
+    margin-top: 0.7rem;
+    .info{
+      display: flex;
+      justify-content: space-between;
+      color: $primary-text-color;
+
+      .completed-by{
+        font-size: 0.8rem;
+
+        img{
+          margin: 0px 0px 0px 15px;
+          width: 1.2rem;
+          height: 1.2rem;
+          vertical-align: middle;
+        }
+      }
+
+      .organizer{
+        width: 8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: right;
+        font-size: 0.6rem;
+      }
+    }
+
+    .task{
+      display: flex;
+      justify-content: space-between;
+      margin: 0px 15px;
+
+      .avatar{
+        border-radius: 100%;
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        background-color: $primary-text-color;
+        color: $meeting-link-background-color;
+      }
+
+      .checkButton{
+        display: inline-block;
+        width: 180px;
+        height: 25px;
+        background-color: $meeting-link-background-color;
+        color: $primary-text-color;
+        border-radius: 10px;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 25px;
+        // margin-right: 1rem;
+        font-weight: $medium;
+
+        &:hover{
+          background-color: transparentize($meeting-link-background-color, 0.3);
+        }
+      }
+    }
+
+  }
+
+}
+
+::ng-deep .mat-dialog-container{
+  padding: 10px;
+}

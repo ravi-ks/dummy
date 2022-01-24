@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    origin: http://localhost:4200
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/pod"
+    username: "${DB_USERNAME:postgres}"
+    password: "${DB_PASSWORD:123}"
+    driverClassName: "org.postgresql.Driver"
+
+  jpa:
+    hibernate:
+      ddl-auto: "update"
+    show-sql: "true"
+    properties:
+      hibernate:
+        show_sql: "true"
+        format_sql: "true"
+        type: "trace"
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: "TRACE"
+        type:
+          descriptor:
+            sql:
+              BasicBinder: "TRACE"

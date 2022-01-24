@@ -1,0 +1,56 @@
+<div class="flex-row">
+  <app-sidebar></app-sidebar>
+  <div class="flex-column">
+    <div class="week-header" *ngIf="viewType !== allViewTypes.month">
+      <div class="time-info"></div>
+      <div *ngFor="let week of weeknames;let i = index" class="week">
+        <div class="name">{{week}}</div>
+        <div class="day" [ngClass]="{'selected': currenDateBoolean[i]}">
+          <p>
+            {{weekDates[i].format('DD')}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cells" *ngIf="viewType !== allViewTypes.month" #parent>
+      <div class="time-info">
+        <div *ngFor="let time of times" class="time-cell">
+          <span>{{time}}</span>
+        </div>
+      </div>
+      <div style="position: relative;flex: 1;">
+        <div class="cells-bg" [ngClass]="viewType">
+          <div *ngFor="let cell of cells" class="cell"></div>
+        </div>
+        <div class="cells-fg" *ngIf="viewType !== allViewTypes.day">
+          <div class="weekwise" *ngFor="let week of weeknames;let i = index">
+            <app-task-button *ngFor="let task of tasksByWeek[week]" [task]="getTask(i,weekDates[i],task)"
+              (onClick)="openTask(task,weekDates[i])" [isWeekly]="true"></app-task-button>
+
+          </div>
+        </div>
+
+        <div class="cells-fg Day" *ngIf="viewType === allViewTypes.day">
+          <app-task-button *ngFor="let task of tasksByDay" [task]="task" (onClick)="openTask(task,weekDates[0])">
+          </app-task-button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="monthly-cells" *ngIf="viewType === allViewTypes.month">
+      <div *ngFor="let cell of cells;let i=index" class="cell" [ngClass]="{'no-border-top': i < 7}">
+        <div class="week-name" *ngIf="i < 7">{{weeknames[i]}}</div>
+        <div class="date" [ngClass]="{'selected':cell.current}">
+          <div>{{cell.show}}</div>
+        </div>
+
+        <app-task-list-item *ngFor="let task of tasksByWeek[weeknames[i%7]]" [task]="getTask(i,cell.date,task)"
+          (click)="openTask(task,cell.date)">
+        </app-task-list-item>
+      </div>
+    </div>
+
+  </div>
+</div>

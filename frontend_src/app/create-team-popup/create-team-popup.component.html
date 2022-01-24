@@ -1,0 +1,73 @@
+<div class="popup" [class.update-popup]="updatePopUp">
+  <div class="heading">
+    <div *ngIf="!updatePopUp">Create Team</div>
+    <div *ngIf="updatePopUp">Update Team</div>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="details">
+      <mat-form-field class="team-name">
+        <mat-label>Team Name</mat-label>
+        <input matInput placeholder="Ex. The Super Ultra Heroes" formControlName="team_name">
+      </mat-form-field>
+      <span class="error-info">
+        <div *ngIf="form.get('team_name')?.touched &&  form.get('team_name')?.hasError('required')">Team Name is Required</div>
+      </span>
+
+      <mat-form-field class="member">
+        <mat-label>Member</mat-label>
+        <input matInput placeholder="dora@explorer.com" formControlName="member_email" #member_email_input>
+      </mat-form-field>
+
+      <button class="add-member" (click)="addMember()" mat-fab><mat-icon>add</mat-icon></button>
+      <span class="error-info">
+        <div *ngIf="form.get('member_email')?.hasError('email')">Please enter a valid email</div>
+        <div *ngIf="form.get('member_email')?.hasError('existingMember')">Member is already present</div>
+      </span>
+    </div>
+
+    <div class="copy-existing-team" *ngIf="!updatePopUp">
+      <mat-form-field>
+        <mat-label>Copy Members</mat-label>
+        <mat-select #selectCopyTeam>
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let team of teams" [value]="team.teamId">{{team.teamName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="add-member" (click)="copyTeam()" mat-fab><mat-icon [matTooltip]="'Copy members to current team'"><img src="../../assets/icons/copyTeam.svg"></mat-icon></button>
+    </div>
+
+    <div class="list">
+      <mat-list #teamMembers [class.height200px]="updatePopUp">
+        <mat-list-item *ngFor="let user of members">
+          <div class="user-details">
+            <div class="avatar" matTooltip={{user}}>
+              {{ getInitials(user) }}
+            </div>
+
+            <div class="pinfo">
+              <h3 matLine class="ellipsis"> {{user}} </h3>
+              <!-- <p matLine>
+                <span class="ellipsis"> {{ user }} </span>
+              </p> -->
+            </div>
+
+            <div class="removeMemberButton" (click)="removeMember(user)"></div>
+          </div>
+
+        </mat-list-item>
+      </mat-list>
+
+      <div class="member-count">
+        Member Count: {{members.length}}
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button mat-raised-button class="cancel-button" *ngIf="!updatePopUp" [mat-dialog-close]>Cancel</button>
+      <button mat-raised-button class="cancel-button delete-button" (click)="confirmDelete()" *ngIf="updatePopUp">Delete</button>
+      <button mat-raised-button class="create-button" [disabled]="!form.valid" (click)="createTeam()" *ngIf="!updatePopUp">Create</button>
+      <button mat-raised-button class="create-button" [disabled]="!form.valid" (click)="updateTeam()" *ngIf="updatePopUp">Save</button>
+    </div>
+  </form>
+</div>
